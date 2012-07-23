@@ -72,14 +72,14 @@
         return;
     }
 
-  NSString *body = nil;
+  NSString *body = @"";
   if ([operation.request HTTPBody]) {
-    body = [NSString stringWithUTF8String:[[operation.request HTTPBody] bytes]];
+    body = [NSString stringWithFormat:@"%@%@", @"\n", [NSString stringWithUTF8String:[[operation.request HTTPBody] bytes]]];
   }
 
   switch (self.level) {
     case AFLoggerLevelDebug:
-      NSLog(@"%@ '%@': \n%@ \n%@", [operation.request HTTPMethod], [[operation.request URL] absoluteString], [operation.request allHTTPHeaderFields], body);
+      NSLog(@"%@ '%@': \n%@ %@", [operation.request HTTPMethod], [[operation.request URL] absoluteString], [operation.request allHTTPHeaderFields], body);
       break;
     case AFLoggerLevelInfo:
       NSLog(@"%@ '%@'", [operation.request HTTPMethod], [[operation.request URL] absoluteString]);
