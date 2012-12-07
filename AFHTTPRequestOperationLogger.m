@@ -70,7 +70,7 @@
         return;
     }
 
-  NSString *body = nil;
+  NSString *body = @"";
   if ([operation.request HTTPBody]) {
     body = [[NSString alloc] initWithData:[operation.request HTTPBody] encoding:NSUTF8StringEncoding];
   }
